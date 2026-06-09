@@ -16,7 +16,7 @@ export default function Layout({ children, onLogout }) {
         <div className="sidebar-brand">
           <div className="sidebar-brand-icon">🔩</div>
           <div>
-            <h1>NATSAL</h1>
+            <h1>SWARAMA</h1>
             <span>Admin Panel</span>
           </div>
         </div>

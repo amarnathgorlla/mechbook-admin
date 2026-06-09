@@ -26,7 +26,7 @@ export default function LoginPage({ onLogin }) {
     try {
       await adminAPI.seed()
       setError('')
-      alert('Admin user created! Use admin@natsal.com / Admin@123')
+      alert('Admin user created! Use admin@swarama.com / Admin@123')
     } catch (err) {
       setError(err.message)
     }
@@ -38,7 +38,7 @@ export default function LoginPage({ onLogin }) {
         <div className="login-card">
           <div className="login-header">
             <div className="login-icon">🔩</div>
-            <h2>NATSAL Admin</h2>
+            <h2>SWARAMA Admin</h2>
             <p>Sign in to manage your platform</p>
           </div>
 
@@ -51,7 +51,7 @@ export default function LoginPage({ onLogin }) {
                 id="admin-email"
                 className="form-input"
                 type="email"
-                placeholder="admin@natsal.com"
+                placeholder="admin@swarama.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required

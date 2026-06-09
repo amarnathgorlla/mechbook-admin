@@ -46,7 +46,7 @@ export default function DashboardPage() {
     <div>
       <div className="page-header">
         <h2>Dashboard</h2>
-        <p>Overview of your NATSAL platform</p>
+        <p>Overview of your SWARAMA platform</p>
       </div>
 
       {/* Stats Cards */}
