@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# SWARAMA Agent System — never commit these
+agents/config/.env.agents
+agents/logs/
+agents/reports/
+agents/testing/regression/

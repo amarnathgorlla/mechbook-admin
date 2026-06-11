@@ -124,9 +124,13 @@ export default function MechanicsPage() {
                     <div className="cell-sub">{m.working_hours_from} - {m.working_hours_to}</div>
                   </td>
                   <td>
-                    {(m.skills || []).slice(0, 3).map((s, i) => (
-                      <span key={i} className="skill-tag">{s}</span>
-                    ))}
+                    {m.skills && m.skills.length > 0 ? (
+                      m.skills.slice(0, 3).map((s, i) => (
+                        <span key={i} className="skill-tag">{s}</span>
+                      ))
+                    ) : (
+                      <span style={{ color: 'var(--color-text-muted)', fontSize: '0.85rem' }}>No skills</span>
+                    )}
                   </td>
                   <td>
                     <div className="cell-main">{m.city || 'N/A'}</div>
@@ -136,6 +140,20 @@ export default function MechanicsPage() {
                   </td>
                   <td>
                     <span className={`badge badge-${m.status}`}>{m.status}</span>
+                    <div style={{ marginTop: '6px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span 
+                        style={{
+                          width: '6px',
+                          height: '6px',
+                          borderRadius: '50%',
+                          backgroundColor: m.is_available ? 'var(--color-emerald)' : 'var(--color-slate)',
+                          display: 'inline-block'
+                        }} 
+                      />
+                      <span style={{ color: m.is_available ? 'var(--color-emerald)' : 'var(--color-text-secondary)', fontWeight: '500' }}>
+                        {m.is_available ? 'Online' : 'Offline'}
+                      </span>
+                    </div>
                   </td>
                   <td>
                     <div className="btn-group">

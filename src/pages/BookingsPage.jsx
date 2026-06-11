@@ -44,6 +44,23 @@ export default function BookingsPage() {
     })
   }
 
+  const handleDeleteBooking = async (id) => {
+    const confirmed = window.confirm('Are you sure you want to delete this booking record? This action cannot be undone.')
+    if (!confirmed) return
+
+    try {
+      await adminAPI.deleteBooking(id)
+      alert('Booking deleted successfully')
+      loadBookings()
+      if (selectedBooking?.id === id) {
+        closeDetail()
+      }
+    } catch (err) {
+      console.error('Failed to delete booking:', err)
+      alert(err.message || 'Failed to delete booking')
+    }
+  }
+
   const filters = ['all', 'pending', 'confirmed', 'done', 'rejected']
   
   const closeDetail = () => setSelectedBooking(null);
@@ -123,7 +140,10 @@ export default function BookingsPage() {
                     {formatDate(b.created_at)}
                   </td>
                   <td>
-                    <button className="btn btn-outline btn-sm" onClick={() => setSelectedBooking(b)}>View</button>
+                    <div className="btn-group">
+                      <button className="btn btn-outline btn-sm" onClick={() => setSelectedBooking(b)}>View</button>
+                      <button className="btn btn-danger btn-sm" onClick={() => handleDeleteBooking(b.id)}>Delete</button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -200,6 +220,17 @@ export default function BookingsPage() {
                     {selectedBooking.issue}
                   </span>
                 </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
+                <button
+                  className="btn btn-danger"
+                  style={{ flex: 1, justifyContent: 'center' }}
+                  onClick={() => handleDeleteBooking(selectedBooking.id)}
+                >
+                  🗑️ Delete Booking
+                </button>
               </div>
 
             </div>

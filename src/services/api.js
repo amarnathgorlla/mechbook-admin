@@ -83,4 +83,6 @@ export const adminAPI = {
     if (search) url += `search=${encodeURIComponent(search)}&`;
     return apiFetch(url);
   },
+  deleteBooking: (id) =>
+    apiFetch(`/bookings/${id}`, { method: 'DELETE' }),
 };
