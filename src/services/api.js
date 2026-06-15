@@ -30,7 +30,7 @@ async function apiFetch(endpoint, options = {}) {
     headers,
   });
 
-  if (response.status === 401) {
+  if (response.status === 401 && endpoint !== '/login') {
     clearToken();
     window.location.href = '/login';
     throw new Error('Session expired');
