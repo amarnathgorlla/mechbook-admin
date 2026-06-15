@@ -1,17 +1,17 @@
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000') + '/api/admin';
 
-let authToken = null;
+const TOKEN_KEY = 'swarama_admin_token';
 
 export function setToken(token) {
-  authToken = token;
+  localStorage.setItem(TOKEN_KEY, token);
 }
 
 export function getToken() {
-  return authToken;
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 export function clearToken() {
-  authToken = null;
+  localStorage.removeItem(TOKEN_KEY);
 }
 
 async function apiFetch(endpoint, options = {}) {
