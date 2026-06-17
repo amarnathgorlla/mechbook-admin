@@ -3,42 +3,94 @@
    ============================== */
 
 :root {
-  /* Color Palette */
-  --color-bg-primary: #0f1117;
-  --color-bg-secondary: #161822;
-  --color-bg-tertiary: #1e2030;
-  --color-bg-card: #1a1c2e;
-  --color-bg-hover: #242640;
-  --color-bg-sidebar: #0d0e14;
+  /* ---- Surfaces ---- */
+  /* was #0f1117 — pure near-black raised the contrast against white text
+     higher than it needs to be for hours of reading. Warming + lifting
+     the floor a little removes the "staring into a hole" feeling. */
+  --color-bg-primary: #14161b;
+  /* was #1a1c2e — desaturated to match the new neutral base instead of
+     leaning navy/blue, which fights with the coral brand accent */
+  --color-bg-card: #1b1e25;
+  /* new: a third surface for hover states, the active sidebar row, and
+     table row hover — having only 2 surfaces forces hover states to use
+     opacity tricks that often look muddy */
+  --color-bg-elevated: #20232b;
+
+  --color-border: #2a2d35;
+  --color-border-strong: #383c46;
+
+  /* ---- Text ---- */
+  /* was pure white (#ffffff or close) — off-white reduces the contrast
+     ratio from ~16:1 to ~11:1, still very readable, noticeably softer */
+  --color-text-primary: #d9d7d1;
+  --color-text-secondary: #8a8d96;
+  --color-text-tertiary: #5f6168;
+
+  /* ---- Brand accent ---- */
+  /* was indigo #6366f1 — generic SaaS purple, unrelated to the rest of
+     the SWARAMA brand. Coral ties the admin panel to the rider/mechanic
+     apps instead of feeling like a different product. */
+  --color-accent: #d85a30;
+  --color-accent-hover: #c44d26;
+  --color-accent-tint: rgba(216, 90, 48, 0.14);
+  --color-accent-text: #f0936c; /* accent text on dark surfaces */
+
+  /* ---- Semantic status colors ----
+     Hue stays the same (green = approved, amber = pending, red = danger)
+     so nothing gets relearned — only the saturation/value drops so a
+     table full of badges doesn't read as a wall of neon. */
+  --color-success: #3e9c7b;
+  --color-success-tint: rgba(62, 156, 123, 0.14);
+  --color-success-text: #6fc9a8;
+
+  --color-warning: #c9963a;
+  --color-warning-tint: rgba(201, 150, 58, 0.14);
+  --color-warning-text: #e0b36b;
+
+  --color-danger: #c25a4a;
+  --color-danger-tint: rgba(194, 90, 74, 0.14);
+  --color-danger-text: #e08b7a;
+
+  --color-neutral: #6b6f78;
+  --color-neutral-tint: rgba(107, 111, 120, 0.14);
+
+  /* ---- Motion ---- */
+  --transition-normal: 250ms ease;
+
+  /* ---- Mappings to keep old color variables compatible ---- */
+  --color-bg-secondary: var(--color-bg-card);
+  --color-bg-tertiary: var(--color-bg-elevated);
+  --color-bg-hover: var(--color-bg-elevated);
+  --color-bg-sidebar: var(--color-bg-primary);
   
-  --color-text-primary: #e8eaf0;
-  --color-text-secondary: #9498b3;
-  --color-text-muted: #6b6f8d;
+  --color-text-muted: var(--color-text-secondary);
   
-  --color-border: #2a2d42;
-  --color-border-light: #353850;
+  --color-border-light: var(--color-border-strong);
   
-  /* Accent Colors */
-  --color-indigo: #6366f1;
-  --color-indigo-hover: #7577f5;
-  --color-indigo-muted: rgba(99, 102, 241, 0.15);
+  /* Accent Mappings (indigo -> accent) */
+  --color-indigo: var(--color-accent);
+  --color-indigo-hover: var(--color-accent-hover);
+  --color-indigo-muted: var(--color-accent-tint);
   
-  --color-emerald: #10b981;
-  --color-emerald-muted: rgba(16, 185, 129, 0.15);
+  /* Success Mappings (emerald -> success) */
+  --color-emerald: var(--color-success);
+  --color-emerald-muted: var(--color-success-tint);
   
-  --color-amber: #f59e0b;
-  --color-amber-muted: rgba(245, 158, 11, 0.15);
+  /* Warning Mappings (amber -> warning) */
+  --color-amber: var(--color-warning);
+  --color-amber-muted: var(--color-warning-tint);
   
-  --color-red: #ef4444;
-  --color-red-muted: rgba(239, 68, 68, 0.15);
+  /* Danger Mappings (red -> danger) */
+  --color-red: var(--color-danger);
+  --color-red-muted: var(--color-danger-tint);
   
-  --color-slate: #64748b;
-  --color-slate-muted: rgba(100, 116, 139, 0.15);
-  
-  --color-blue: #3b82f6;
-  --color-blue-muted: rgba(59, 130, 246, 0.15);
-  
-  /* Spacing */
+  /* Neutral Mappings (slate/blue -> neutral) */
+  --color-slate: var(--color-neutral);
+  --color-slate-muted: var(--color-neutral-tint);
+  --color-blue: var(--color-accent);
+  --color-blue-muted: var(--color-accent-tint);
+
+  /* ---- Spacing ---- */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -46,25 +98,24 @@
   --space-xl: 32px;
   --space-2xl: 48px;
   
-  /* Border Radius */
+  /* ---- Border Radius ---- */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 20px;
   --radius-full: 9999px;
   
-  /* Shadows */
+  /* ---- Shadows ---- */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
   --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.35);
-  --shadow-glow-indigo: 0 0 20px rgba(99, 102, 241, 0.2);
+  --shadow-glow-indigo: 0 0 20px var(--color-accent-tint);
   
-  /* Transitions */
+  /* ---- Transitions ---- */
   --transition-fast: 150ms ease;
-  --transition-normal: 250ms ease;
   --transition-slow: 350ms ease;
   
-  /* Sidebar */
+  /* ---- Sidebar ---- */
   --sidebar-width: 260px;
   --sidebar-collapsed: 72px;
 }
@@ -428,10 +479,10 @@ a {
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   padding: 4px 10px;
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  border-radius: 6px;
+  font-size: 12.5px;
   font-weight: 600;
   text-transform: capitalize;
   white-space: nowrap;
@@ -442,31 +493,28 @@ a {
   width: 6px;
   height: 6px;
   border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-approved, .badge-confirmed, .badge-done {
+  background: var(--color-success-tint);
+  color: var(--color-success-text);
 }
 
 .badge-pending {
-  background: var(--color-amber-muted);
-  color: var(--color-amber);
+  background: var(--color-warning-tint);
+  color: var(--color-warning-text);
 }
-.badge-pending::before { background: var(--color-amber); }
-
-.badge-approved, .badge-confirmed, .badge-done {
-  background: var(--color-emerald-muted);
-  color: var(--color-emerald);
-}
-.badge-approved::before, .badge-confirmed::before, .badge-done::before { background: var(--color-emerald); }
 
 .badge-rejected {
-  background: var(--color-red-muted);
-  color: var(--color-red);
+  background: var(--color-danger-tint);
+  color: var(--color-danger-text);
 }
-.badge-rejected::before { background: var(--color-red); }
 
 .badge-blocked {
-  background: var(--color-slate-muted);
-  color: var(--color-slate);
+  background: var(--color-neutral-tint);
+  color: var(--color-text-secondary);
 }
-.badge-blocked::before { background: var(--color-slate); }
 
 /* ==============================
    Buttons
@@ -476,44 +524,46 @@ a {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  font-size: 0.82rem;
+  font-size: 13px;
   font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 7px;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: all var(--transition-fast);
-  border: none;
+  transition: background var(--transition-normal), border-color var(--transition-normal), color var(--transition-normal);
   font-family: inherit;
 }
 
 .btn-sm {
-  padding: 5px 12px;
-  font-size: 0.78rem;
+  padding: 4px 10px;
+  font-size: 11.5px;
 }
 
 .btn-primary {
-  background: var(--color-indigo);
-  color: white;
+  background: var(--color-accent);
+  color: #fff;
+  border: 1px solid transparent;
 }
 .btn-primary:hover {
-  background: var(--color-indigo-hover);
-  box-shadow: var(--shadow-glow-indigo);
+  background: var(--color-accent-hover);
 }
 
-.btn-success {
-  background: var(--color-emerald);
-  color: white;
+.btn-success, .btn-success-tonal {
+  background: var(--color-success-tint);
+  color: var(--color-success-text);
+  border-color: rgba(62, 156, 123, 0.3);
 }
-.btn-success:hover {
-  background: #0da472;
+.btn-success:hover, .btn-success-tonal:hover {
+  background: rgba(62, 156, 123, 0.22);
 }
 
-.btn-danger {
-  background: var(--color-red);
-  color: white;
+.btn-danger, .btn-danger-tonal {
+  background: var(--color-danger-tint);
+  color: var(--color-danger-text);
+  border-color: rgba(194, 90, 74, 0.3);
 }
-.btn-danger:hover {
-  background: #dc2626;
+.btn-danger:hover, .btn-danger-tonal:hover {
+  background: rgba(194, 90, 74, 0.22);
 }
 
 .btn-outline {
@@ -522,7 +572,7 @@ a {
   color: var(--color-text-secondary);
 }
 .btn-outline:hover {
-  border-color: var(--color-border-light);
+  border-color: var(--color-text-secondary);
   color: var(--color-text-primary);
   background: var(--color-bg-hover);
 }
@@ -530,10 +580,12 @@ a {
 .btn-ghost {
   background: transparent;
   color: var(--color-text-secondary);
+  border-color: var(--color-border-strong);
 }
 .btn-ghost:hover {
-  background: var(--color-bg-hover);
   color: var(--color-text-primary);
+  border-color: var(--color-text-secondary);
+  background: var(--color-bg-hover);
 }
 
 .btn-group {
