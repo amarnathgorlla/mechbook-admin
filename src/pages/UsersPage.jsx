@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { adminAPI } from '../services/api'
+import { UsersIcon } from '../components/Icons'
 
 export default function UsersPage() {
   const [users, setUsers] = useState([])
@@ -96,7 +97,9 @@ export default function UsersPage() {
           </table>
         ) : (
           <div className="empty-state">
-            <div className="empty-icon">👥</div>
+            <div className="empty-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: 'var(--color-text-tertiary)' }}>
+              <UsersIcon size={36} />
+            </div>
             <p>{search ? `No users found for "${search}"` : 'No users registered yet'}</p>
           </div>
         )}

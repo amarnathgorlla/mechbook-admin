@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { adminAPI, setToken } from '../services/api'
+import { LogoIcon } from '../components/Icons'
 
 export default function LoginPage({ onLogin }) {
   const [email, setEmail] = useState('')
@@ -37,7 +38,9 @@ export default function LoginPage({ onLogin }) {
       <div className="login-container">
         <div className="login-card">
           <div className="login-header">
-            <div className="login-icon">🔩</div>
+            <div className="login-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+              <LogoIcon size={32} />
+            </div>
             <h2>SWARAMA Admin</h2>
             <p>Sign in to manage your platform</p>
           </div>

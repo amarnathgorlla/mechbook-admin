@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { adminAPI } from '../services/api'
+import { WrenchIcon } from '../components/Icons'
 
 export default function MechanicsPage() {
   const [mechanics, setMechanics] = useState([])
@@ -216,7 +217,9 @@ export default function MechanicsPage() {
           </table>
         ) : (
           <div className="empty-state">
-            <div className="empty-icon">🔧</div>
+            <div className="empty-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: 'var(--color-text-tertiary)' }}>
+              <WrenchIcon size={36} />
+            </div>
             <p>No mechanics found{filter !== 'all' ? ` with status "${filter}"` : ''}</p>
           </div>
         )}

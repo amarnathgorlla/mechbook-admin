@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { adminAPI } from '../services/api'
+import { FeedbackIcon } from '../components/Icons'
 
 export default function FeedbackPage() {
   const [feedbackList, setFeedbackList] = useState([])
@@ -46,8 +47,8 @@ export default function FeedbackPage() {
 
   const filters = [
     { key: 'all', label: 'All Reviews' },
-    { key: 'user', label: '👤 User Feedback' },
-    { key: 'mechanic', label: '🔧 Mechanic Feedback' },
+    { key: 'user', label: 'User Feedback' },
+    { key: 'mechanic', label: 'Mechanic Feedback' },
   ]
 
   const closeDetail = () => setSelectedFeedback(null)
@@ -109,7 +110,7 @@ export default function FeedbackPage() {
                 <tr key={f.id}>
                   <td>
                     <span className={`badge ${f.sender_type === 'user' ? 'badge-pending' : 'badge-approved'}`}>
-                      {f.sender_type === 'user' ? '👤 User' : '🔧 Partner'}
+                      {f.sender_type === 'user' ? 'User' : 'Partner'}
                     </span>
                   </td>
                   <td className="cell-main">{f.sender_name || 'Anonymous'}</td>
@@ -130,7 +131,9 @@ export default function FeedbackPage() {
           </table>
         ) : (
           <div className="empty-state">
-            <div className="empty-icon">💬</div>
+            <div className="empty-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: 'var(--color-text-tertiary)' }}>
+              <FeedbackIcon size={36} />
+            </div>
             <p>{senderType !== 'all' ? `No ${senderType} feedback logs` : 'No feedback logs yet'}</p>
           </div>
         )}
@@ -150,7 +153,7 @@ export default function FeedbackPage() {
                 <div className="detail-row">
                   <span className="label">Account Type</span>
                   <span className={`badge ${selectedFeedback.sender_type === 'user' ? 'badge-pending' : 'badge-approved'}`}>
-                    {selectedFeedback.sender_type === 'user' ? '👤 User App Client' : '🔧 Mechanic Partner'}
+                    {selectedFeedback.sender_type === 'user' ? 'User App Client' : 'Mechanic Partner'}
                   </span>
                 </div>
                 <div className="detail-row">

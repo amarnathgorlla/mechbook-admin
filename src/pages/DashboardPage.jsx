@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { adminAPI } from '../services/api'
+import { UsersIcon, WrenchIcon, ClockIcon, BookingsIcon, AlertIcon } from '../components/Icons'
 
 export default function DashboardPage() {
   const [stats, setStats] = useState(null)
@@ -52,25 +53,33 @@ export default function DashboardPage() {
       {/* Stats Cards */}
       <div className="stats-grid">
         <div className="stat-card" style={{ '--accent': 'var(--color-blue)' }}>
-          <div className="stat-icon" style={{ background: 'var(--color-blue-muted)', color: 'var(--color-blue)' }}>👥</div>
+          <div className="stat-icon" style={{ background: 'var(--color-blue-muted)', color: 'var(--color-blue)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <UsersIcon size={20} />
+          </div>
           <div className="stat-value">{stats?.users?.total || 0}</div>
           <div className="stat-label">Total Users</div>
         </div>
 
         <div className="stat-card" style={{ '--accent': 'var(--color-indigo)' }}>
-          <div className="stat-icon" style={{ background: 'var(--color-indigo-muted)', color: 'var(--color-indigo)' }}>🔧</div>
+          <div className="stat-icon" style={{ background: 'var(--color-indigo-muted)', color: 'var(--color-indigo)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <WrenchIcon size={20} />
+          </div>
           <div className="stat-value">{stats?.mechanics?.total || 0}</div>
           <div className="stat-label">Total Mechanics</div>
         </div>
 
         <div className="stat-card" style={{ '--accent': 'var(--color-amber)' }}>
-          <div className="stat-icon" style={{ background: 'var(--color-amber-muted)', color: 'var(--color-amber)' }}>⏳</div>
+          <div className="stat-icon" style={{ background: 'var(--color-amber-muted)', color: 'var(--color-amber)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <ClockIcon size={20} />
+          </div>
           <div className="stat-value">{stats?.mechanics?.pending || 0}</div>
           <div className="stat-label">Pending Approvals</div>
         </div>
 
         <div className="stat-card" style={{ '--accent': 'var(--color-emerald)' }}>
-          <div className="stat-icon" style={{ background: 'var(--color-emerald-muted)', color: 'var(--color-emerald)' }}>📋</div>
+          <div className="stat-icon" style={{ background: 'var(--color-emerald-muted)', color: 'var(--color-emerald)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <BookingsIcon size={20} />
+          </div>
           <div className="stat-value">{stats?.bookings?.today || 0}</div>
           <div className="stat-label">Bookings Today</div>
         </div>
@@ -119,7 +128,9 @@ export default function DashboardPage() {
           }}
           onClick={() => navigate('/mechanics')}
         >
-          <span style={{ fontSize: '1.5rem' }}>⚠️</span>
+          <div style={{ color: 'var(--color-amber)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <AlertIcon size={24} />
+          </div>
           <div>
             <div style={{ fontWeight: 600, color: 'var(--color-amber)' }}>
               {stats.mechanics.pending} mechanic{stats.mechanics.pending > 1 ? 's' : ''} waiting for approval
@@ -182,7 +193,9 @@ export default function DashboardPage() {
           </table>
         ) : (
           <div className="empty-state">
-            <div className="empty-icon">📋</div>
+            <div className="empty-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: 'var(--color-text-tertiary)' }}>
+              <BookingsIcon size={36} />
+            </div>
             <p>No bookings yet</p>
           </div>
         )}
