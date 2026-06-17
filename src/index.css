@@ -3,56 +3,46 @@
    ============================== */
 
 :root {
-  /* ---- Surfaces ---- */
-  /* was #0f1117 — pure near-black raised the contrast against white text
-     higher than it needs to be for hours of reading. Warming + lifting
-     the floor a little removes the "staring into a hole" feeling. */
-  --color-bg-primary: #14161b;
-  /* was #1a1c2e — desaturated to match the new neutral base instead of
-     leaning navy/blue, which fights with the coral brand accent */
-  --color-bg-card: #1b1e25;
-  /* new: a third surface for hover states, the active sidebar row, and
-     table row hover — having only 2 surfaces forces hover states to use
-     opacity tricks that often look muddy */
-  --color-bg-elevated: #20232b;
+  /* ---- Surfaces (Muted Slate-Green / Pine Dark) ---- */
+  /* #161c1d is a very soft, dark pine-charcoal that significantly reduces blue-light emission
+     and contrast glare, making it very comfortable to read for hours. */
+  --color-bg-primary: #161c1d;
+  /* A lifted, desaturated slate-green for cards and tables */
+  --color-bg-card: #1f2729;
+  /* Elevated surface for hover states and active selections */
+  --color-bg-elevated: #283234;
 
-  --color-border: #2a2d35;
-  --color-border-strong: #383c46;
+  --color-border: #2f3a3c;
+  --color-border-strong: #3d4c4f;
 
-  /* ---- Text ---- */
-  /* was pure white (#ffffff or close) — off-white reduces the contrast
-     ratio from ~16:1 to ~11:1, still very readable, noticeably softer */
-  --color-text-primary: #d9d7d1;
-  --color-text-secondary: #8a8d96;
-  --color-text-tertiary: #5f6168;
+  /* ---- Text (Soft cool off-white and muted sage) ---- */
+  /* Off-white reduces the contrast ratio from ~16:1 to ~10:1, which prevents eye fatigue */
+  --color-text-primary: #e3e8e8;
+  --color-text-secondary: #93a5a6;
+  --color-text-tertiary: #687677;
 
-  /* ---- Brand accent ---- */
-  /* was indigo #6366f1 — generic SaaS purple, unrelated to the rest of
-     the SWARAMA brand. Coral ties the admin panel to the rider/mechanic
-     apps instead of feeling like a different product. */
-  --color-accent: #d85a30;
-  --color-accent-hover: #c44d26;
-  --color-accent-tint: rgba(216, 90, 48, 0.14);
-  --color-accent-text: #f0936c; /* accent text on dark surfaces */
+  /* ---- Brand Accent (Soothing Copper / Coral) ---- */
+  /* Warm copper balances the cool green background beautifully and stands out without glare */
+  --color-accent: #d86a45;
+  --color-accent-hover: #c25732;
+  --color-accent-tint: rgba(216, 106, 69, 0.12);
+  --color-accent-text: #f3a68c;
 
-  /* ---- Semantic status colors ----
-     Hue stays the same (green = approved, amber = pending, red = danger)
-     so nothing gets relearned — only the saturation/value drops so a
-     table full of badges doesn't read as a wall of neon. */
-  --color-success: #3e9c7b;
-  --color-success-tint: rgba(62, 156, 123, 0.14);
-  --color-success-text: #6fc9a8;
+  /* ---- Semantic Status Colors (Desaturated Sage, Amber, and Terracotta) ---- */
+  --color-success: #4b9a7d;
+  --color-success-tint: rgba(75, 154, 125, 0.12);
+  --color-success-text: #84c9b0;
 
-  --color-warning: #c9963a;
-  --color-warning-tint: rgba(201, 150, 58, 0.14);
-  --color-warning-text: #e0b36b;
+  --color-warning: #c29a4f;
+  --color-warning-tint: rgba(194, 154, 79, 0.12);
+  --color-warning-text: #e3bf7d;
 
-  --color-danger: #c25a4a;
-  --color-danger-tint: rgba(194, 90, 74, 0.14);
-  --color-danger-text: #e08b7a;
+  --color-danger: #bf675c;
+  --color-danger-tint: rgba(191, 103, 92, 0.12);
+  --color-danger-text: #e39c94;
 
-  --color-neutral: #6b6f78;
-  --color-neutral-tint: rgba(107, 111, 120, 0.14);
+  --color-neutral: #728485;
+  --color-neutral-tint: rgba(114, 132, 133, 0.12);
 
   /* ---- Motion ---- */
   --transition-normal: 250ms ease;
@@ -195,7 +185,7 @@ a {
 .sidebar-brand-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, var(--color-indigo), #818cf8);
+  background: linear-gradient(135deg, var(--color-indigo), #f29c7b);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -207,7 +197,7 @@ a {
 .sidebar-brand h1 {
   font-size: 1.25rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #e8eaf0, #a5b4fc);
+  background: linear-gradient(135deg, var(--color-text-primary), var(--color-accent-text));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -673,7 +663,7 @@ a {
 .login-header .login-icon {
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, var(--color-indigo), #818cf8);
+  background: linear-gradient(135deg, var(--color-indigo), #f29c7b);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
