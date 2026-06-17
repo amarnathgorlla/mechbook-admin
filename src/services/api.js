@@ -2,12 +2,40 @@ const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000') 
 
 const TOKEN_KEY = 'swarama_admin_token';
 
+function isTokenExpired(token) {
+  if (!token) return true;
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return true;
+    // Decode base64url payload
+    const base64Url = parts[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    const payload = JSON.parse(jsonPayload);
+    if (!payload.exp) return false;
+    const now = Math.floor(Date.now() / 1000);
+    return payload.exp < now;
+  } catch (e) {
+    return true;
+  }
+}
+
 export function setToken(token) {
   localStorage.setItem(TOKEN_KEY, token);
 }
 
 export function getToken() {
-  return localStorage.getItem(TOKEN_KEY);
+  const token = localStorage.getItem(TOKEN_KEY);
+  if (token && isTokenExpired(token)) {
+    localStorage.removeItem(TOKEN_KEY);
+    return null;
+  }
+  return token;
 }
 
 export function clearToken() {
@@ -86,4 +114,11 @@ export const adminAPI = {
   },
   deleteBooking: (id) =>
     apiFetch(`/bookings/${id}`, { method: 'DELETE' }),
+
+  getFeedback: (senderType, search) => {
+    let url = `/feedback?`;
+    if (senderType && senderType !== 'all') url += `senderType=${senderType}&`;
+    if (search) url += `search=${encodeURIComponent(search)}&`;
+    return apiFetch(url);
+  },
 };

@@ -7,6 +7,7 @@ import DashboardPage from './pages/DashboardPage'
 import MechanicsPage from './pages/MechanicsPage'
 import UsersPage from './pages/UsersPage'
 import BookingsPage from './pages/BookingsPage'
+import FeedbackPage from './pages/FeedbackPage'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!getToken())
@@ -32,6 +33,7 @@ function App() {
         <Route path="/mechanics" element={<MechanicsPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/bookings" element={<BookingsPage />} />
+        <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/login" element={<Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

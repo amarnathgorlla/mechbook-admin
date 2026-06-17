@@ -8,6 +8,7 @@ export default function Layout({ children, onLogout }) {
     { path: '/mechanics', icon: '🔧', label: 'Mechanics' },
     { path: '/users', icon: '👥', label: 'Users' },
     { path: '/bookings', icon: '📋', label: 'Bookings' },
+    { path: '/feedback', icon: '💬', label: 'Feedback' },
   ]
 
   return (
